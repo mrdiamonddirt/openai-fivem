@@ -22,7 +22,7 @@ To install this resource, follow these steps:
 
 3. (Optional) Edit the other variables in the `config.lua` file to adjust the rate limits, cooldowns, and other settings.
 
-4. Add `start openaifivemchat` to your server.cfg file.
+4. Add `start openai-fivem` to your server.cfg file.
 
 5. Start or restart your FiveM server.
 
