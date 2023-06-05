@@ -9,12 +9,9 @@ version '1.0.0'
 
 lua54 'yes'
 
-shared_script {
+server_scripts {
+    'server/server.lua',
     'config.lua'
-}
-
-server_script {
-    'server/server.lua'
 }
 
 dependencies {'chat'}

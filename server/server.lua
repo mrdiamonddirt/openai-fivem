@@ -6,29 +6,67 @@ end)
 
 function handleOpenAICommand(args)
     local prompt = table.concat(args, " ") -- join the arguments into a single prompt string
-    local api_key = "****************************************************" -- add your OPEN API KEY here
+    local api_key = Config.OpenApiKey -- add your OPEN API KEY here
     -- print('API Key: ' .. api_key)
     print('Prompt: ' .. prompt)
-    local url = 'https://api.openai.com/v1/completions'
+    local url = 'https://api.openai.com/v1/chat/completions'
     local headers = {
         ['Content-Type'] = 'application/json',
         ['Authorization'] = 'Bearer ' .. api_key
     }
     local body = {
-        model = "text-davinci-003",
-        prompt = Config.defaultPrompt .. prompt,
+        model = "gpt-3.5-turbo",
+        messages = {
+            {
+                role = "assistant",
+                content = "You are an AI assistant for a fivem server to help players with gameplay."
+            },
+            {
+                role = "user",
+                content = "How do i make money on this server?"
+            },
+            {
+                role = "assistant",
+                content = "You can obtain a job at the Job Center or you can sell drugs to other players."
+            },
+            {
+                role = "user",
+                content = "What is the Discord for this server?"
+            },
+            {
+                role = "assistant",
+                content = "The Discord for this server is " .. Config.DiscordLink
+            },
+            {
+                role = "user",
+                content = "What is the Servers Website?"
+            },
+            {
+                role = "assistant",
+                content = "The Website for this server is " .. Config.WebsiteLink
+            },
+            {
+                role = "user",
+                content = prompt
+            }
+        },
         temperature = 0.5,
-        max_tokens = 50
+        top_p = 1,
+        n = 1,
+        stream = false,
+        max_tokens = 500,
+        presence_penalty = 0,
+        frequency_penalty = 0,
         }
     PerformHttpRequest(url, function(err, text, headers)
         if err == 200 then
             local data = json.decode(text)
-            print('Text: ' .. text)
-            print('Response: ' .. data.choices[1].text)
+            -- print('Text: ' .. text)
+            print('Response: ' .. data.choices[1].message.content)
             TriggerClientEvent('chat:addMessage', -1, {
                 color = { 255, 0, 0},
                 multiline = true,
-                args = { 'AI', data.choices[1].text }
+                args = { 'AI Assistant', data.choices[1].message.content }
             })
         else
             print('Error: ' .. err)
