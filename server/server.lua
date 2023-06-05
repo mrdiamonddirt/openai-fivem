@@ -6,7 +6,7 @@ end)
 
 function handleOpenAICommand(args)
     local prompt = table.concat(args, " ") -- join the arguments into a single prompt string
-    local api_key = Config.OPENAI_API_KEY
+    local api_key = "****************************************************" -- add your OPEN API KEY here
     -- print('API Key: ' .. api_key)
     print('Prompt: ' .. prompt)
     local url = 'https://api.openai.com/v1/completions'
