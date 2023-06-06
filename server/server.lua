@@ -1,7 +1,6 @@
 RegisterCommand("AI", function(source, args, rawCommand)
-    print('AI Command Registered')
     handleOpenAICommand(args)
-    TriggerClientEvent('openai-fivem:ai', -1)
+    -- TriggerClientEvent('openai-fivem:ai', -1)
 end)
 
 function handleOpenAICommand(args)
