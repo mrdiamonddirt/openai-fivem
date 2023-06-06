@@ -54,7 +54,7 @@ function handleOpenAICommand(args)
         top_p = 1,
         n = 1,
         stream = false,
-        max_tokens = 500,
+        max_tokens = 200,
         presence_penalty = 0,
         frequency_penalty = 0,
         }
@@ -68,6 +68,16 @@ function handleOpenAICommand(args)
                 multiline = true,
                 args = { 'AI Assistant', data.choices[1].message.content }
             })
+        elseif err == 401 then
+            print('Invalid Authentication Token')
+            print('Ensure the OPENAPI KEY is correct in the config.lua file')
+        elseif err == 429 then
+            print('Rate Limit Exceeded')
+            print("You haven't added a payment method to your OpenAI account.")
+            print('Or You have either exceeded the rate limit for the OpenAI API')
+            print('Or you have exceeded you maximum monthly spend.')
+        elseif err == 500 then
+            print('Internal Server Error')
         else
             print('Error: ' .. err)
         end
