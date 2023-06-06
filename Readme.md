@@ -2,7 +2,7 @@
 
 This is a FiveM chat resource that allows users to query OpenAI's GPT-3 API from within the game. Users can send a command with an argument to the chat, and the script will query the OpenAI API and output the response back to the chat.
 
-![Screenshot](https://img001.prntscr.com/file/img001/ulsScfHpTkeO_s_R2NEAXg.png)
+![Screenshot](https://img001.prntscr.com/file/img001/JkJ6r48MRPKSZSCFUjd94g.png)
 
 ## Requirements
 
@@ -22,7 +22,7 @@ To install this resource, follow these steps:
 
 3. (Optional) Edit the other variables in the `config.lua` file to adjust the rate limits, cooldowns, and other settings.
 
-4. Add `start openaifivemchat` to your server.cfg file.
+4. Add `start openai-fivem` to your server.cfg file.
 
 5. Start or restart your FiveM server.
 
